@@ -125,6 +125,16 @@ local function Passive()
 	else
 		CENTER_SCREEN_ANNOUNCE:AddMessage(0, CSA_EVENT_SMALL_TEXT, SOUNDS.ACHIEVEMENT_AWARDED, "You are" .. "|c00FF0C passive" .. "|r towards innocents")
 	end
+	SetSetting(SETTING_TYPE_IN_WORLD, IN_WORLD_UI_SETTING_HIDE_HELM, 1)
+	local _, _, _, _, _, _, isCostumeActive = GetCollectibleInfo(289)
+	local _, _, _, _, _, _, isPersonalityActive = GetCollectibleInfo(374)
+	-- See pimp my ride addon for a list of costumes and personalities
+	if isCostumeActive then
+		UseCollectible(289)
+	end
+	if isPersonalityActive then
+		UseCollectible(374)
+	end
 end
 
 local function Aggressive()
@@ -132,6 +142,15 @@ local function Aggressive()
 		ZO_Alert(UI_ALERT_CATEGORY_ALERT, SOUNDS.ACHIEVEMENT_AWARDED, "You are" .. "|cFF002A aggressive" .. "|r towards innocents")
 	else
 		CENTER_SCREEN_ANNOUNCE:AddMessage(0, CSA_EVENT_SMALL_TEXT, SOUNDS.ACHIEVEMENT_AWARDED, "You are" .. "|cFF002A aggressive" .. "|r towards innocents")
+	end
+	SetSetting(SETTING_TYPE_IN_WORLD, IN_WORLD_UI_SETTING_HIDE_HELM, 0)
+	local _, _, _, _, _, _, isCostumeActive = GetCollectibleInfo(289)
+	local _, _, _, _, _, _, isPersonalityActive = GetCollectibleInfo(374)
+	if (isCostumeActive == false) then
+		UseCollectible(289)
+	end
+	if (isPersonalityActive == false) then
+		UseCollectible(374)
 	end
 end
 
@@ -202,22 +221,12 @@ local function Troublemaker()
 	end
 end
 
-
---------------------------------------------------------------------------
-----------------------   Toggle Assassin Mode ----------------------------
---------------------------------------------------------------------------	
-
-local function TroublemakerAssassin()
-	d("assassin mode toggle")
-end
-
 --------------------------------------------------------------------------
 -------------------------   Slash Commands   -----------------------------
 --------------------------------------------------------------------------
 
 SLASH_COMMANDS["/trouble"] = Troublemaker
 SLASH_COMMANDS["/tm"] = Troublemaker
-SLASH_COMMANDS["/troubleassassin"] = TroublemakerAssassin
 
 --------------------------------------------------------------------------
 --------------------------   Registration   ------------------------------
