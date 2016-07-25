@@ -1,0 +1,12 @@
+<Bindings>
+  <Layer name="SI_KEYBINDINGS_LAYER_GENERAL">
+    <Category name="SI_KEYBINDINGS_CATEGORY_INTERACTION">
+      <Action name="TROUBLEMAKER INNOCENTS">
+        <Down>SLASH_COMMANDS["/trouble"]()</Down>
+      </Action>
+      <Action name="TROUBLEMAKER ASSASSIN">
+        <Down>SLASH_COMMANDS["/troubleassassin"]()</Down>
+      </Action>
+    </Category>
+  </Layer>
+</Bindings>
